@@ -1,10 +1,52 @@
+import { useState } from 'react'
 import RoleSelection from './components/RoleSelection.jsx'
+import Login from './components/Login.jsx'
+import Dashboard from './components/Dashboard.jsx'
+
+// Simple screen-based navigation (no router dependency).
+// Flow: role selection -> login -> placeholder dashboard.
+// Swap this for react-router later if you need real URLs.
 
 function App() {
-  // Later, connect each role to its own dashboard/route here.
-  // e.g. with react-router: const navigate = useNavigate(); navigate(`/${role}`)
+  const [screen, setScreen] = useState('roles') // 'roles' | 'login' | 'dashboard'
+  const [selectedRole, setSelectedRole] = useState(null)
+
+  // Role selection -> Login
   function handleContinue(role) {
-    console.log('[MIRA] Continue with role:', role)
+    setSelectedRole(role)
+    setScreen('login')
+  }
+
+  // Login "Change role" -> back to role selection
+  function handleChangeRole() {
+    setScreen('roles')
+  }
+
+  // Login submit (MVP: no real auth) -> dashboard
+  function handleLogin({ id }) {
+    // Wire real authentication here later using { id, password }.
+    console.log('[MIRA] Sign in as role:', selectedRole, 'id:', id)
+    setScreen('dashboard')
+  }
+
+  // Dashboard -> back to start
+  function handleSignOut() {
+    setSelectedRole(null)
+    setScreen('roles')
+  }
+
+  if (screen === 'login') {
+    return (
+      <Login
+        roleId={selectedRole}
+        onChangeRole={handleChangeRole}
+        onSubmit={handleLogin}
+      />
+    )
+  }
+
+  if (screen === 'dashboard') {
+    return <Dashboard roleId={selectedRole} onSignOut={handleSignOut} />
   }
 
   return <RoleSelection onContinue={handleContinue} />
