@@ -1,0 +1,258 @@
+/* MIRA role-selection screen ------------------------------------------- */
+/* All variables are scoped to .mira so nothing leaks into the rest of the app. */
+
+.mira {
+  --mira-bg: #f7fafc;
+  --mira-surface: #ffffff;
+  --mira-ink: #0f2540;
+  --mira-muted: #5b7089;
+  --mira-blue: #2f7de1;
+  --mira-blue-soft: #eaf3fd;
+  --mira-green: #29a888;
+  --mira-green-soft: #e7f6f1;
+  --mira-border: #e4ebf2;
+  --mira-shadow: 0 1px 2px rgba(15, 37, 64, 0.04),
+    0 12px 28px rgba(15, 37, 64, 0.06);
+  --mira-shadow-hover: 0 2px 4px rgba(15, 37, 64, 0.05),
+    0 18px 40px rgba(15, 37, 64, 0.1);
+
+  min-height: 100vh;
+  background: var(--mira-bg);
+  color: var(--mira-ink);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.mira *,
+.mira *::before,
+.mira *::after {
+  box-sizing: border-box;
+}
+
+/* Header ---------------------------------------------------------------- */
+.mira__header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 24px 32px;
+}
+
+.mira__logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--mira-blue);
+}
+
+.mira__tagline {
+  font-size: 13px;
+  color: var(--mira-muted);
+}
+
+/* Main ------------------------------------------------------------------ */
+.mira__main {
+  flex: 1;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 24px 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mira__welcome {
+  text-align: center;
+  margin: 24px 0 40px;
+}
+
+.mira__heading {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.mira__subheading {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 4px;
+  color: var(--mira-ink);
+}
+
+.mira__support {
+  font-size: 15px;
+  margin: 0;
+  color: var(--mira-muted);
+}
+
+/* Cards ----------------------------------------------------------------- */
+.mira__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.role-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  text-align: left;
+  padding: 26px 22px;
+  background: var(--mira-surface);
+  border: 1.5px solid var(--mira-border);
+  border-radius: 18px;
+  box-shadow: var(--mira-shadow);
+  cursor: pointer;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease,
+    transform 0.18s ease, background 0.18s ease;
+  font: inherit;
+  color: inherit;
+}
+
+.role-card:hover {
+  box-shadow: var(--mira-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.role-card:focus-visible {
+  outline: 3px solid var(--mira-blue-soft);
+  outline-offset: 2px;
+  border-color: var(--mira-blue);
+}
+
+.role-card--selected {
+  border-color: var(--mira-blue);
+  background: var(--mira-blue-soft);
+  box-shadow: var(--mira-shadow-hover);
+}
+
+.role-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--mira-green-soft);
+  color: var(--mira-green);
+}
+
+.role-card--selected .role-card__icon {
+  background: #ffffff;
+  color: var(--mira-blue);
+}
+
+.role-card__title {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.role-card__description {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--mira-muted);
+}
+
+/* Selection checkmark */
+.role-card__check {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--mira-blue);
+  color: #ffffff;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.role-card--selected .role-card__check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Actions --------------------------------------------------------------- */
+.mira__actions {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.continue-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 30px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--mira-blue);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(47, 125, 225, 0.28);
+  transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease,
+    opacity 0.18s ease;
+}
+
+.continue-button:hover:not(:disabled) {
+  background: #256bc7;
+  transform: translateY(-1px);
+}
+
+.continue-button:focus-visible {
+  outline: 3px solid var(--mira-blue-soft);
+  outline-offset: 2px;
+}
+
+.continue-button:disabled {
+  background: #cdd8e4;
+  color: #f2f6fa;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.continue-button__arrow {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.mira__helper {
+  font-size: 13px;
+  color: var(--mira-muted);
+  margin: 0;
+  text-align: center;
+}
+
+/* Responsive ------------------------------------------------------------ */
+@media (max-width: 760px) {
+  .mira__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .mira__header {
+    flex-direction: column;
+    gap: 4px;
+    padding: 20px 20px;
+  }
+
+  .mira__heading {
+    font-size: 27px;
+  }
+}
