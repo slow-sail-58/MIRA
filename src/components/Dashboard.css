@@ -1,0 +1,74 @@
+/* MIRA placeholder dashboard ------------------------------------------- */
+/* Reuses the .mira design tokens from RoleSelection.css.                  */
+
+.dashboard {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 24px 64px;
+}
+
+.dashboard__panel {
+  width: 100%;
+  max-width: 440px;
+  text-align: center;
+  background: var(--mira-surface);
+  border: 1.5px solid var(--mira-border);
+  border-radius: 20px;
+  box-shadow: var(--mira-shadow);
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.dashboard__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: var(--mira-green-soft);
+  color: var(--mira-green);
+}
+
+.dashboard__heading {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.dashboard__text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--mira-muted);
+  margin: 0;
+}
+
+.dashboard__signout {
+  margin-top: 6px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--mira-blue);
+  background: var(--mira-blue-soft);
+  border: 1px solid var(--mira-border);
+  border-radius: 11px;
+  padding: 11px 22px;
+  cursor: pointer;
+  transition: background 0.16s ease;
+}
+
+.dashboard__signout:hover {
+  background: #dcebfb;
+}
+
+.dashboard__signout:focus-visible {
+  outline: 3px solid var(--mira-blue-soft);
+  outline-offset: 2px;
+}

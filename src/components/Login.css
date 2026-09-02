@@ -1,0 +1,289 @@
+/* MIRA login screen ---------------------------------------------------- */
+/* Reuses the .mira design tokens defined in RoleSelection.css so the login */
+/* page stays visually consistent with the role-selection screen.          */
+
+.mira--login {
+  justify-content: flex-start;
+}
+
+.login {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 24px 64px;
+}
+
+/* Panel ----------------------------------------------------------------- */
+.login__panel {
+  width: 100%;
+  max-width: 420px;
+  background: var(--mira-surface);
+  border: 1.5px solid var(--mira-border);
+  border-radius: 20px;
+  box-shadow: var(--mira-shadow);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Identity block -------------------------------------------------------- */
+.login__identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--mira-blue-soft);
+  border: 1px solid var(--mira-border);
+  border-radius: 14px;
+}
+
+.login__identity-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: var(--mira-surface);
+  color: var(--mira-blue);
+}
+
+.login__identity-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+  min-width: 0;
+}
+
+.login__identity-label {
+  font-size: 12px;
+  color: var(--mira-muted);
+}
+
+.login__identity-role {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--mira-ink);
+}
+
+.login__change {
+  margin-left: auto;
+  flex-shrink: 0;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--mira-blue);
+  background: none;
+  border: none;
+  padding: 4px 2px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.login__change:hover {
+  text-decoration: underline;
+}
+
+.login__change:focus-visible {
+  outline: 3px solid var(--mira-blue-soft);
+  outline-offset: 2px;
+}
+
+/* Intro ----------------------------------------------------------------- */
+.login__intro {
+  text-align: left;
+}
+
+.login__heading {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.login__subheading {
+  font-size: 14px;
+  color: var(--mira-muted);
+  margin: 0;
+}
+
+/* Form ------------------------------------------------------------------ */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.login-form__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mira-ink);
+}
+
+.login-form__input {
+  width: 100%;
+  font: inherit;
+  font-size: 15px;
+  color: var(--mira-ink);
+  background: var(--mira-bg);
+  border: 1.5px solid var(--mira-border);
+  border-radius: 11px;
+  padding: 12px 14px;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease,
+    background 0.16s ease;
+}
+
+.login-form__input::placeholder {
+  color: #9aa8b8;
+}
+
+.login-form__input:focus {
+  outline: none;
+  border-color: var(--mira-blue);
+  background: var(--mira-surface);
+  box-shadow: 0 0 0 4px var(--mira-blue-soft);
+}
+
+/* Password field with toggle */
+.login-form__password {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.login-form__password .login-form__input {
+  padding-right: 46px;
+}
+
+.login-form__toggle {
+  position: absolute;
+  right: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  background: none;
+  color: var(--mira-muted);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: color 0.16s ease, background 0.16s ease;
+}
+
+.login-form__toggle:hover {
+  color: var(--mira-blue);
+  background: var(--mira-blue-soft);
+}
+
+.login-form__toggle:focus-visible {
+  outline: 3px solid var(--mira-blue-soft);
+  outline-offset: 1px;
+}
+
+/* Forgot password link */
+.login-form__meta {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -4px;
+}
+
+.login-form__link {
+  font: inherit;
+  font-size: 13px;
+  color: var(--mira-blue);
+  background: none;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.login-form__link:hover {
+  text-decoration: underline;
+}
+
+.login-form__link:focus-visible {
+  outline: 3px solid var(--mira-blue-soft);
+  outline-offset: 2px;
+}
+
+/* Validation message */
+.login-form__error {
+  margin: 0;
+  font-size: 13px;
+  color: #c0392b;
+  background: #fdecea;
+  border: 1px solid #f6d4cf;
+  border-radius: 10px;
+  padding: 9px 12px;
+}
+
+/* Submit button */
+.login-form__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--mira-blue);
+  border: none;
+  border-radius: 12px;
+  padding: 14px 20px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(47, 125, 225, 0.28);
+  transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease,
+    opacity 0.18s ease;
+}
+
+.login-form__submit:hover:not(:disabled) {
+  background: #256bc7;
+  transform: translateY(-1px);
+}
+
+.login-form__submit:focus-visible {
+  outline: 3px solid var(--mira-blue-soft);
+  outline-offset: 2px;
+}
+
+.login-form__submit:disabled {
+  background: #cdd8e4;
+  color: #f2f6fa;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.login-form__arrow {
+  font-size: 17px;
+  line-height: 1;
+}
+
+/* Responsive ------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .login__panel {
+    padding: 22px 18px;
+    border-radius: 18px;
+  }
+
+  .login__identity {
+    flex-wrap: wrap;
+  }
+
+  .login__change {
+    margin-left: 0;
+  }
+}
