@@ -2,6 +2,7 @@ import { useState } from 'react'
 import RoleSelection from './components/RoleSelection.jsx'
 import Login from './components/Login.jsx'
 import Dashboard from './components/Dashboard.jsx'
+import PatientDashboard from './pages/PatientDashboard.jsx'
 
 // Simple screen-based navigation (no router dependency).
 // Flow: role selection -> login -> placeholder dashboard.
@@ -46,6 +47,11 @@ function App() {
   }
 
   if (screen === 'dashboard') {
+    // Patients get the full MIRA home dashboard.
+    // Other roles keep their existing (separate) placeholder for now.
+    if (selectedRole === 'patient') {
+      return <PatientDashboard onSignOut={handleSignOut} />
+    }
     return <Dashboard roleId={selectedRole} onSignOut={handleSignOut} />
   }
 
