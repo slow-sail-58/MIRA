@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import DashboardHeader from '../components/DashboardHeader.jsx'
 import Greeting from '../components/Greeting.jsx'
 import HealthSummary from '../components/HealthSummary.jsx'
@@ -7,6 +7,8 @@ import MedicineReminder from '../components/MedicineReminder.jsx'
 import HealthTimeline from '../components/HealthTimeline.jsx'
 import OfflineStatus from '../components/OfflineStatus.jsx'
 import BottomNavigation from '../components/BottomNavigation.jsx'
+import PatientSidebar from '../components/PatientSidebar.jsx'
+import PatientSectionView from '../components/PatientSectionView.jsx'
 import '../components/PatientDashboard.css'
 
 // MIRA Patient home dashboard.
@@ -14,7 +16,16 @@ import '../components/PatientDashboard.css'
 
 function PatientDashboard({ onSignOut }) {
   const [activeNav, setActiveNav] = useState('home')
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [banner, setBanner] = useState(null) // simple placeholder feedback
+
+  useEffect(() => {
+    function handleEscape(event) {
+      if (event.key === 'Escape') setSidebarOpen(false)
+    }
+    window.addEventListener('keydown', handleEscape)
+    return () => window.removeEventListener('keydown', handleEscape)
+  }, [])
 
   function notify(message) {
     setBanner(message)
@@ -34,12 +45,25 @@ function PatientDashboard({ onSignOut }) {
     notify(`Opening “${action.title}”…`)
   }
 
+  function handleNavigation(id) {
+    setActiveNav(id)
+    setSidebarOpen(false)
+  }
+
   return (
     <div className="mira pdash">
       <DashboardHeader
-        onMenu={() => notify('Menu coming soon.')}
+        onMenu={() => setSidebarOpen(true)}
         onNotifications={() => notify('You have 2 new notifications.')}
-        onProfile={() => setActiveNav('profile')}
+        onProfile={() => handleNavigation('profile')}
+      />
+
+      <PatientSidebar
+        active={activeNav}
+        isOpen={sidebarOpen}
+        onNavigate={handleNavigation}
+        onClose={() => setSidebarOpen(false)}
+        onSignOut={onSignOut}
       />
 
       {banner && (
@@ -48,35 +72,36 @@ function PatientDashboard({ onSignOut }) {
         </div>
       )}
 
-      <main className="pdash__main">
-        <Greeting />
+      {activeNav === 'home' ? (
+        <main className="pdash__main">
+          <Greeting />
 
-        <HealthSummary onViewAll={() => notify('Opening full health summary…')} />
+          <HealthSummary onViewAll={() => notify('Opening full health summary…')} />
 
-        <QuickActions onAction={handleQuickAction} />
+          <QuickActions onAction={handleQuickAction} />
 
-        <MedicineReminder />
+          <MedicineReminder />
 
-        <HealthTimeline
-          onViewAll={() => notify('Opening full activity history…')}
-          onSelect={(item) => notify(item.text)}
-        />
+          <HealthTimeline
+            onViewAll={() => notify('Opening full activity history…')}
+            onSelect={(item) => notify(item.text)}
+          />
 
-        <OfflineStatus onRetry={() => notify('Reconnecting…')} />
+          <OfflineStatus onRetry={() => notify('Reconnecting…')} />
 
-        <button type="button" className="pdash__signout" onClick={onSignOut}>
-          Sign out
-        </button>
-      </main>
+          <button type="button" className="pdash__signout" onClick={onSignOut}>
+            Sign out
+          </button>
+        </main>
+      ) : (
+        <PatientSectionView active={activeNav} onHome={() => handleNavigation('home')} />
+      )}
 
       <BottomNavigation
         active={activeNav}
         onChange={(id) => {
-          setActiveNav(id)
-          if (id !== 'home') {
-            const label = id.charAt(0).toUpperCase() + id.slice(1)
-            notify(`${label} is coming soon.`)
-          }
+          const destination = id === 'medicines' ? 'dosage' : id === 'health' ? 'history' : id
+          handleNavigation(destination)
         }}
       />
     </div>

@@ -803,3 +803,277 @@
     margin-left: calc(96px + ((100% - 96px - min(720px, 100% - 96px)) / 2));
   }
 }
+
+/* Patient sidebar -------------------------------------------------------- */
+.patient-sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 50;
+  width: 264px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 14px 18px;
+  background: var(--mira-surface);
+  border-right: 1px solid var(--mira-border);
+  box-shadow: 8px 0 24px rgba(15, 37, 64, 0.04);
+}
+
+.patient-sidebar__topline,
+.patient-sidebar__profile,
+.patient-sidebar__logout,
+.patient-sidebar__item {
+  display: flex;
+  align-items: center;
+}
+
+.patient-sidebar__topline {
+  justify-content: space-between;
+  padding: 0 10px 26px;
+}
+
+.patient-sidebar__logo {
+  color: var(--mira-blue);
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.patient-sidebar__close {
+  display: none;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--mira-border);
+  border-radius: 10px;
+  background: var(--mira-surface);
+  color: var(--mira-muted);
+  cursor: pointer;
+}
+
+.patient-sidebar__nav {
+  overflow-y: auto;
+}
+
+.patient-sidebar__group + .patient-sidebar__group {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--mira-border);
+}
+
+.patient-sidebar__group-label {
+  margin: 0 10px 8px;
+  color: var(--mira-muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.patient-sidebar__items {
+  display: grid;
+  gap: 3px;
+}
+
+.patient-sidebar__item {
+  position: relative;
+  width: 100%;
+  gap: 11px;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 11px;
+  background: transparent;
+  color: var(--mira-muted);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.patient-sidebar__item:hover,
+.patient-sidebar__item--active {
+  background: var(--mira-blue-soft);
+  color: var(--mira-blue);
+}
+
+.patient-sidebar__item-icon {
+  display: inline-flex;
+  flex: 0 0 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+.patient-sidebar__item-copy {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.patient-sidebar__item-label {
+  color: var(--mira-ink);
+  font-size: 13.5px;
+  font-weight: 650;
+}
+
+.patient-sidebar__item-description {
+  overflow: hidden;
+  color: var(--mira-muted);
+  font-size: 10.5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.patient-sidebar__unread {
+  width: 7px;
+  height: 7px;
+  margin-left: auto;
+  border-radius: 50%;
+  background: var(--pdash-alert);
+}
+
+.patient-sidebar__account {
+  margin-top: auto;
+  padding-top: 17px;
+  border-top: 1px solid var(--mira-border);
+}
+
+.patient-sidebar__profile {
+  width: 100%;
+  gap: 10px;
+  padding: 10px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--mira-ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.patient-sidebar__profile:hover,
+.patient-sidebar__profile--active {
+  background: var(--mira-blue-soft);
+}
+
+.patient-sidebar__profile span {
+  display: grid;
+  flex: 1;
+  gap: 2px;
+}
+
+.patient-sidebar__profile strong { font-size: 13.5px; }
+.patient-sidebar__profile small { color: var(--mira-muted); font-size: 11px; }
+
+.patient-sidebar__profile-avatar {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--mira-blue-soft);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.patient-sidebar__logout {
+  gap: 9px;
+  margin: 8px 10px 0;
+  padding: 5px 0;
+  border: 0;
+  background: transparent;
+  color: var(--mira-muted);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.patient-sidebar__logout:hover { color: var(--pdash-alert); }
+.patient-sidebar__scrim { display: none; }
+
+/* Destination views ----------------------------------------------------- */
+.patient-section {
+  flex: 1;
+  width: min(720px, 100%);
+  margin: 0 auto;
+  padding: 28px 16px 48px;
+}
+
+.patient-section__header { margin-bottom: 24px; }
+.patient-section__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 28px;
+  border: 0;
+  background: none;
+  color: var(--mira-blue);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.patient-section__back svg { transform: rotate(180deg); }
+.patient-section__eyebrow { margin: 0 0 6px; color: var(--mira-green); font-size: 11px; font-weight: 800; letter-spacing: .1em; }
+.patient-section__header h1 { margin: 0 0 6px; font-size: 28px; }
+.patient-section__header > p:last-child { margin: 0; color: var(--mira-muted); font-size: 15px; }
+.patient-section__card { padding: 22px; border: 1px solid var(--mira-border); border-radius: 16px; background: var(--mira-surface); box-shadow: var(--mira-shadow); }
+.patient-section__card h2 { margin: 0 0 5px; font-size: 18px; }
+.patient-section__card p { margin: 0; color: var(--mira-muted); line-height: 1.5; }
+.patient-section__caretaker-card { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 14px; }
+.patient-section__large-avatar { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 3px solid var(--mira-blue-soft); }
+.patient-section__tag { color: var(--mira-green); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+.patient-section__details { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 8px 0; }
+.patient-section__details div { display: grid; gap: 4px; }
+.patient-section__details dt { display: flex; align-items: center; gap: 5px; color: var(--mira-muted); font-size: 11px; }
+.patient-section__details dd { margin: 0; font-size: 13.5px; font-weight: 600; }
+.patient-section__caretaker-card > button { grid-column: 1 / -1; justify-self: start; }
+.patient-section__stack { display: grid; gap: 12px; }
+.patient-section__alert-groups { display: grid; gap: 18px; }
+.patient-section__subhead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.patient-section__subhead h2 { margin: 0; }
+.patient-section__subhead span { color: var(--pdash-alert); font-size: 12px; font-weight: 700; }
+.patient-section__dose { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 13px; }
+.patient-section__dose h2 { font-size: 15px; }
+.patient-section__dose p { font-size: 12px; }
+.patient-section__dose-icon { display: inline-flex; padding: 11px; border-radius: 12px; background: var(--mira-blue-soft); color: var(--mira-blue); }
+.patient-section__status { padding: 5px 8px; border-radius: 8px; font-size: 11px; font-weight: 700; }
+.patient-section__status--pending { background: var(--pdash-alert-soft); color: var(--pdash-alert); }
+.patient-section__status--taken { background: var(--mira-green-soft); color: var(--mira-green); }
+.patient-section__dose .pdash-btn { grid-column: 2 / -1; justify-self: start; }
+.patient-section__timeline { display: grid; gap: 0; padding-left: 12px; border-left: 2px solid var(--mira-border); }
+.patient-section__history-entry { position: relative; padding: 0 0 26px 22px; }
+.patient-section__history-entry:last-child { padding-bottom: 0; }
+.patient-section__timeline-dot { position: absolute; left: -19px; top: 3px; width: 12px; height: 12px; border: 3px solid var(--mira-surface); border-radius: 50%; box-shadow: 0 0 0 1px var(--mira-border); }
+.patient-section__timeline-dot--blue { background: var(--mira-blue); }
+.patient-section__timeline-dot--green { background: var(--mira-green); }
+.patient-section__history-entry time { color: var(--mira-muted); font-size: 12px; }
+.patient-section__history-entry h2 { margin: 4px 0; font-size: 16px; }
+.patient-section__history-entry p { margin: 0; color: var(--mira-muted); font-size: 13px; line-height: 1.5; }
+.patient-section__list-item { display: flex; align-items: center; justify-content: space-between; padding: 16px; border: 1px solid var(--mira-border); border-radius: 12px; background: var(--mira-surface); color: var(--mira-ink); font: inherit; font-size: 14px; text-align: left; cursor: pointer; }
+.patient-section__list-item:hover { border-color: var(--mira-blue); color: var(--mira-blue); }
+.patient-section__qr, .patient-section__profile-card { text-align: center; }
+.patient-section__qr-code { display: grid; place-items: center; width: 172px; height: 172px; margin: 0 auto 20px; border: 10px solid #fff; outline: 1px solid var(--mira-ink); background: repeating-conic-gradient(var(--mira-ink) 0 25%, #fff 0 50%) 50% / 18px 18px; color: transparent; }
+.patient-section__qr p { max-width: 440px; margin: 0 auto 18px; }
+.patient-section__choices { display: grid; gap: 8px; margin-top: 16px; }
+.patient-section__choice { display: flex; justify-content: space-between; padding: 13px 14px; border: 1px solid var(--mira-border); border-radius: 10px; background: #fff; color: var(--mira-ink); font: inherit; text-align: left; cursor: pointer; }
+.patient-section__choice span { color: var(--mira-muted); font-size: 12px; }
+.patient-section__choice--selected { border-color: var(--mira-blue); background: var(--mira-blue-soft); color: var(--mira-blue); }
+.patient-section__profile-card > p { margin-bottom: 15px; }
+.patient-section__profile-card .patient-section__details { text-align: left; }
+
+@media (max-width: 767px) {
+  .patient-sidebar { width: min(310px, 88vw); transform: translateX(-105%); transition: transform .22s ease; box-shadow: 14px 0 32px rgba(15, 37, 64, .14); }
+  .patient-sidebar--open { transform: translateX(0); }
+  .patient-sidebar__close { display: inline-flex; }
+  .patient-sidebar__scrim { position: fixed; inset: 0; z-index: 40; display: block; background: rgba(15, 37, 64, .26); opacity: 0; pointer-events: none; transition: opacity .22s ease; }
+  .patient-sidebar__scrim--visible { opacity: 1; pointer-events: auto; }
+  .patient-section { padding-top: 24px; }
+  .patient-section__dose { grid-template-columns: auto 1fr; }
+  .patient-section__status { grid-column: 2; justify-self: start; }
+}
+
+@media (min-width: 768px) {
+  .pdash-nav { display: none; }
+  .pdash__header, .pdash__main, .pdash__banner, .patient-section { margin-left: 264px; }
+  .pdash__header { width: calc(100% - 264px); }
+  .pdash__main { max-width: 960px; }
+  .pdash__banner { margin-right: auto; }
+  .patient-section { width: min(720px, calc(100% - 296px)); }
+}

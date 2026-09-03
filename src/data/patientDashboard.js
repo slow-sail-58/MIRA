@@ -83,3 +83,47 @@ export const navItems = [
   { id: 'health', label: 'Health', icon: 'health' },
   { id: 'profile', label: 'Profile', icon: 'profile' },
 ]
+
+export const sidebarGroups = [
+  {
+    id: 'healthcare',
+    label: 'Healthcare',
+    items: [
+      { id: 'home', label: 'Home', icon: 'home', description: 'Your health overview' },
+      { id: 'caretaker', label: 'My Caretaker', icon: 'caregiver', description: 'Assigned ASHA Worker' },
+      { id: 'history', label: 'Medical History', icon: 'clipboard', description: 'Consultations and notes' },
+      { id: 'dosage', label: 'Dosage Reminders', icon: 'pill', description: 'Medicines and schedules' },
+      { id: 'alerts', label: 'Alerts', icon: 'bell', description: 'Personal and caretaker updates', unread: true },
+      { id: 'qr', label: 'QR Center', icon: 'qr', description: 'Your personal MIRA QR' },
+    ],
+  },
+  {
+    id: 'support',
+    label: 'Support & Preferences',
+    items: [
+      { id: 'language', label: 'Language', icon: 'globe', description: 'Choose your language' },
+      { id: 'help', label: 'Help', icon: 'help', description: 'Guidance and support' },
+      { id: 'settings', label: 'Settings', icon: 'settings', description: 'App preferences' },
+    ],
+  },
+]
+
+export const caretaker = {
+  name: 'Anita Kumari',
+  role: 'ASHA Worker',
+  phone: '+91 98765 43210',
+  area: 'Rampur Village',
+  availability: 'Available today, 9 AM - 5 PM',
+  assignedDate: '12 January 2024',
+}
+
+export const medicalHistory = [
+  { date: '18 August 2026', title: 'Follow-up consultation', detail: 'Blood pressure is stable. Continue current care plan.', tone: 'blue' },
+  { date: '05 June 2026', title: 'Seasonal allergy', detail: 'Prescribed antihistamine for five days.', tone: 'green' },
+  { date: '22 March 2026', title: 'Routine health check', detail: 'No new allergies reported. Previous prescription reviewed.', tone: 'blue' },
+]
+
+export const dosageReminders = [
+  { id: 'dose-1', name: 'Metformin 500 mg', dose: '1 tablet', time: '8:00 AM', frequency: 'Daily', status: 'Pending' },
+  { id: 'dose-2', name: 'Vitamin D3', dose: '1 capsule', time: '1:00 PM', frequency: 'Every Sunday', status: 'Taken' },
+]
